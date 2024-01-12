@@ -6,16 +6,19 @@ import Search from './Search.jsx'
 
 
 
-export default function AllPlayers({setSelectedPlayerId}){
+export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
+    const [done, setDone] = useState(false);
     
 
     useEffect(() => {
         async function updatePlayersArr(){
             const newPlayersArr = await getAllPlayers();
+            setDone(true);
             setPlayersArr(newPlayersArr);
+            setVisibleArr(playersArr);
         }
 
         updatePlayersArr();
@@ -23,24 +26,28 @@ export default function AllPlayers({setSelectedPlayerId}){
     }, [refresh])
 
     useEffect(() => {
-        async function updatePlayersArr(){
-            const newPlayersArr = await getAllPlayers();
-            setVisibleArr(newPlayersArr);
+        setDone(false);
+        if (currentSearch === ""){
+            setVisibleArr(playersArr);
+        } else {
+            const lowerCaseSearch = currentSearch.toLowerCase();
+            const visiblePlayers = playersArr.filter((player) => {
+                return (player.name.toLowerCase().includes(lowerCaseSearch));
+            })
+            setVisibleArr(visiblePlayers);
         }
-
-        updatePlayersArr();
-    }, [])
+    }, [currentSearch, done])
 
     return (
         <>
-            <Search playersArr={playersArr} setVisibleArr={setVisibleArr}/>
+            <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {
                         return <p>No Players</p>
                     } else {
                         return (
                             visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
                             })
                         )
                     }
