@@ -6,18 +6,19 @@ import Search from './Search.jsx'
 
 
 
-export default function AllPlayers({setSelectedPlayerId}){
+export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
-    const [currentSearch, setCurrentSearch] = useState("");
     const [done, setDone] = useState(false);
+    
 
     useEffect(() => {
         async function updatePlayersArr(){
             const newPlayersArr = await getAllPlayers();
             setDone(true);
             setPlayersArr(newPlayersArr);
+            setVisibleArr(playersArr);
         }
 
         updatePlayersArr();
@@ -35,15 +36,6 @@ export default function AllPlayers({setSelectedPlayerId}){
             setVisibleArr(visiblePlayers);
         }
     }, [currentSearch, done])
-
-    useEffect(() => {
-        async function updatePlayersArr(){
-            const newPlayersArr = await getAllPlayers();
-            setVisibleArr(newPlayersArr);
-        }
-
-        updatePlayersArr();
-    }, [])
 
     return (
         <>

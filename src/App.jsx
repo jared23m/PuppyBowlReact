@@ -10,13 +10,13 @@ import PlayerHighlight from './components/PlayerHighlight.jsx'
 function App() {
 
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
-  const [newPlayer, setNewPlayer] = useState({name: "duke4", breed: "airedale", status: "field", imageUrl: "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg"});
+  const [currentSearch, setCurrentSearch] = useState("");
   
   return (
     <>
       <Routes>
         <Route path="/highlight" element= {<PlayerHighlight selectedPlayerId={selectedPlayerId} setSelectedPlayerId={setSelectedPlayerId}/>} />
-        <Route path="/" element={<AllPlayers setSelectedPlayerId={setSelectedPlayerId}/>} />
+        <Route path="/" element={<AllPlayers setSelectedPlayerId={setSelectedPlayerId} currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>} />
       </Routes>
     </>
   )
