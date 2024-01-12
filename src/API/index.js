@@ -39,6 +39,15 @@ export async function deletePlayer(id){
     }
 }
 
+export async function getOnePlayer(id){
+    try{
+        const response = await fetch(`${API}players/${id}`);
+        const json = await response.json();
+        return json.data.player;
+    } catch (error){
+        console.error(error);
+    }
+}
 
 //createPlayer({name: "duke7", breed: "airedale", status: "field", imageUrl: "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg"});
 

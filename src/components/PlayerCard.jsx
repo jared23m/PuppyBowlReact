@@ -1,19 +1,27 @@
-import { deletePlayer } from "../API/index.js"
+import { useNavigate } from "react-router-dom";
+import { deletePlayer, getOnePlayer } from "../API/index.js"
 
 
 
-export default function PlayerCard({id, name, imageUrl, setRefresh}){
+export default function PlayerCard({id, name, imageUrl, setRefresh, setSelectedPlayerId}){
+    const navigate = useNavigate();
 
-    function handleClick(id){
+    function handleDeleteClick(id){
         deletePlayer(id);
         setRefresh(true);
+    }
+
+    function handleLearnClick(id){
+        setSelectedPlayerId(id)
+        navigate("/highlight");
     }
 
     return (
         <>
             <h1>{name}</h1>
             <img src={imageUrl} alt={`Picture of ${name}`} width="300"/>
-            <button onClick = {() => handleClick(id)}>Delete Player</button>
+            <button onClick = {() => handleLearnClick(id)}>Learn More</button>
+            <button onClick = {() => handleDeleteClick(id)}>Delete Player</button>
         </>
     )
 }

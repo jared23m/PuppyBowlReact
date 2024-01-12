@@ -2,6 +2,7 @@ import './App.css'
 import {useState} from 'react'
 import {Routes, Route} from 'react-router-dom'
 import AllPlayers from './components/AllPlayers.jsx'
+import PlayerHighlight from './components/PlayerHighlight.jsx'
 
 
 
@@ -14,7 +15,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<AllPlayers />} />
+        <Route path="/highlight" element= {<PlayerHighlight selectedPlayerId={selectedPlayerId} setSelectedPlayerId={setSelectedPlayerId}/>} />
+        <Route path="/" element={<AllPlayers setSelectedPlayerId={setSelectedPlayerId}/>} />
       </Routes>
     </>
   )
