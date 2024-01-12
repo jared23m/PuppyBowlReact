@@ -7,6 +7,7 @@ import PlayerCard from './PlayerCard.jsx'
 
 export default function AllPlayers(){
     const [playersArr, setPlayersArr] = useState([]);
+    const [refresh, setRefresh] = useState(false);
     
 
     useEffect(() => {
@@ -16,7 +17,8 @@ export default function AllPlayers(){
         }
 
         updatePlayersArr();
-    }, [])
+        setRefresh(false);
+    }, [refresh])
 
     return (
         <>
@@ -26,7 +28,7 @@ export default function AllPlayers(){
                     } else {
                         return (
                             playersArr.map((player) => {
-                                return <PlayerCard key={player.id} name={player.name} imageUrl={player.imageUrl}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} setRefresh={setRefresh}/>
                             })
                         )
                     }
