@@ -2,6 +2,7 @@ import getAllPlayers from '../API/index.js'
 import {useState, useEffect} from 'react'
 import PlayerCard from './PlayerCard.jsx'
 import Search from './Search.jsx'
+import AddPlayerForm from './AddPlayerForm.jsx'
 
 
 
@@ -40,6 +41,7 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
 
     return (
         <>
+            <AddPlayerForm />
             <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {
