@@ -1,33 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {useState} from 'react'
+import {Routes, Route} from 'react-router-dom'
+import AllPlayers from './components/AllPlayers.jsx'
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [selectedPlayerId, setSelectedPlayerId] = useState(null);
+  const [newPlayer, setNewPlayer] = useState({name: "duke4", breed: "airedale", status: "field", imageUrl: "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg"});
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<AllPlayers />} />
+      </Routes>
     </>
   )
 }
