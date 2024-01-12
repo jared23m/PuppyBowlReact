@@ -3,7 +3,7 @@ import { deletePlayer, getOnePlayer } from "../API/index.js"
 
 
 
-export default function PlayerCard({id, name, imageUrl, setRefresh, setSelectedPlayerId}){
+export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, setSelectedPlayerId}){
     const navigate = useNavigate();
 
     function handleDeleteClick(id){

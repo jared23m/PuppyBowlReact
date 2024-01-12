@@ -10,17 +10,31 @@ export default function AllPlayers({setSelectedPlayerId}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
-    
+    const [currentSearch, setCurrentSearch] = useState("");
+    const [done, setDone] = useState(false);
 
     useEffect(() => {
         async function updatePlayersArr(){
             const newPlayersArr = await getAllPlayers();
+            setDone(true);
             setPlayersArr(newPlayersArr);
         }
 
         updatePlayersArr();
         setRefresh(false);
     }, [refresh])
+
+    useEffect(() => {
+        setDone(false);
+        if (currentSearch === ""){
+            setVisibleArr(playersArr);
+        } else {
+            const visiblePlayers = playersArr.filter((player) => {
+                return (player.name.includes(currentSearch));
+            })
+            setVisibleArr(visiblePlayers);
+        }
+    }, [currentSearch, done])
 
     useEffect(() => {
         async function updatePlayersArr(){
@@ -33,14 +47,14 @@ export default function AllPlayers({setSelectedPlayerId}){
 
     return (
         <>
-            <Search playersArr={playersArr} setVisibleArr={setVisibleArr}/>
+            <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {
                         return <p>No Players</p>
                     } else {
                         return (
                             visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
                             })
                         )
                     }
