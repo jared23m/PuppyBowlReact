@@ -62,7 +62,10 @@ export default function AddPlayerForm({className, formName, setFormName, formBre
     
     return (
         <div className={className}>
-            <h2>Add Player</h2>
+            <div className='titleAndCheck'>
+                <h2 className='formTitle'>Add Player</h2>
+                <img className='checkMark' style={buttonDisabled ? {visibility: 'hidden'} : {visibility: 'visible'}}src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/1200px-Eo_circle_green_checkmark.svg.png' width='50px'/>
+            </div>
             {(nameLengthError.length != 0) && <p className='errorWarning'>{nameLengthError}</p>}
             {(breedLengthError.length != 0) && <p className='errorWarning'>{breedLengthError}</p>}
             {(statusError.length !=0) && <p className='errorWarning'>{statusError}</p>}

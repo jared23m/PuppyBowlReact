@@ -105,6 +105,24 @@ button:focus-visible {
   flex-direction: column;
 }
 
+.titleAndCheck{
+  display: flex;
+  margin-left: 1%;
+}
+
+.formTitle{
+  margin:0px;
+  width: 200%;
+  margin-right: 10px;
+}
+
+.checkMark{
+  width: 25px;
+  height: 25px;
+  margin-top: 5%;
+
+}
+
 .PlayerList{
   margin-left: -10%;
   margin-top: 5%;
