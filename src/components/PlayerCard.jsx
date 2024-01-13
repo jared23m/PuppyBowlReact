@@ -3,7 +3,7 @@ import { deletePlayer, getOnePlayer } from "../API/index.js"
 
 
 
-export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, setSelectedPlayerId}){
+export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, setSelectedPlayerId, setConfirm}){
     const navigate = useNavigate();
 
     function handleDeleteClick(id){
@@ -12,6 +12,7 @@ export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, set
     }
 
     function handleLearnClick(id){
+        setConfirm(false);
         setSelectedPlayerId(id)
         navigate("/highlight");
     }

@@ -10,16 +10,16 @@ export default async function getAllPlayers(){
     }
 }
 
-export async function createPlayer(newPlayer){
+export async function createPlayer(name, breed, status, imageUrl){
     try{
         const response = await fetch(`${API}players`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                name: newPlayer.name,
-                breed: newPlayer.breed,
-                status: newPlayer.status,
-                imageUrl: newPlayer.imageUrl
+                name: name,
+                breed: breed,
+                status: status,
+                imageUrl: imageUrl
             })
         })
 

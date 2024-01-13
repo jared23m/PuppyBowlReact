@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react'
+import { createPlayer } from '../API';
 
-export default function AddPlayerForm({formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError}){
+export default function AddPlayerForm({formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm}){
     
-    const [buttonDisabled, setButtonDisabled] = useState("true");
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [buttonId, setButtonId] = useState("disabled");
     const [errorsUpdated, setErrorsUpdated] = useState(false);
+   
 
     useEffect(() => {
 
@@ -38,14 +40,25 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
         setErrorsUpdated(false);
 
         if((nameLengthError != "") || (breedLengthError != "") || (statusError != "")){
-            setButtonDisabled("true");
+            setButtonDisabled(true);
             setButtonId("disabled");
         } else {
-            setButtonDisabled("false");
+            setButtonDisabled(false);
             setButtonId("submit");
         }
 
     }, [errorsUpdated])
+
+    function handleSubmit(event){
+        event.preventDefault();
+        createPlayer(formName, formBreed, formStatus, formUrl);
+        setRefresh(true);
+        setFormName("");
+        setFormBreed("");
+        setFormStatus("");
+        setFormUrl("");
+        setConfirm(true);
+    }
     
     return (
         <>
@@ -53,7 +66,7 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
             {(nameLengthError.length != 0) && <p>{nameLengthError}</p>}
             {(breedLengthError.length != 0) && <p>{breedLengthError}</p>}
             {(statusError.length !=0) && <p>{statusError}</p>}
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div id='entries'>
                     <label>
                         Name: <input type= 'text' value= {formName} onChange= {(e) => setFormName(e.target.value)}/>
@@ -68,8 +81,9 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
                         Image URL: <input type= 'text' value= {formUrl} onChange= {(e) => setFormUrl(e.target.value)}/>
                     </label>
                 </div>
-                <button  id={buttonId} disabled={{buttonDisabled}}>Submit</button>
+                <button  id={buttonId} disabled={buttonDisabled}>Submit</button>
             </form>
+            {confirm && <p>Player Submitted!</p>}
             
         </>
     )

@@ -12,6 +12,7 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
     const [done, setDone] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     
 
     useEffect(() => {
@@ -54,7 +55,10 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                             breedLengthError={breedLengthError}
                             setBreedLengthError={setBreedLengthError}
                             statusError={statusError}
-                            setStatusError={setStatusError}/>
+                            setStatusError={setStatusError}
+                            setRefresh={setRefresh}
+                            confirm= {confirm}
+                            setConfirm={setConfirm}/>
             <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {
@@ -62,7 +66,7 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                     } else {
                         return (
                             visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm}/>
                             })
                         )
                     }
