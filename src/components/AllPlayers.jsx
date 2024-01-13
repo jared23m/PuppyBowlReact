@@ -7,7 +7,7 @@ import AddPlayerForm from './AddPlayerForm.jsx'
 
 
 
-export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch}){
+export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
@@ -41,7 +41,20 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
 
     return (
         <>
-            <AddPlayerForm />
+            <AddPlayerForm formName={formName}
+                            setFormName={setFormName}
+                            formBreed={formBreed}
+                            setFormBreed={setFormBreed}
+                            formStatus={formStatus}
+                            setFormStatus={setFormStatus}
+                            formUrl={formUrl}
+                            setFormUrl={setFormUrl}
+                            nameLengthError={nameLengthError}
+                            setNameLengthError={setNameLengthError}
+                            breedLengthError={breedLengthError}
+                            setBreedLengthError={setBreedLengthError}
+                            statusError={statusError}
+                            setStatusError={setStatusError}/>
             <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {

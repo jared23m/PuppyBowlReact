@@ -1,13 +1,7 @@
 import {useState, useEffect} from 'react'
 
-export default function AddPlayerForm(){
-    const [formName, setFormName] = useState("");
-    const [formBreed, setFormBreed] = useState("");
-    const [formStatus, setFormStatus] = useState("");
-    const [formUrl, setFormUrl] = useState("");
-    const [nameLengthError, setNameLengthError] = useState("The name must be at least 1 character long.");
-    const [breedLengthError, setBreedLengthError] = useState("The breed must be at least 1 character long.");
-    const [statusError, setStatusError] = useState("The status must be either 'field' or 'bench.'");
+export default function AddPlayerForm({formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError}){
+    
     const [buttonDisabled, setButtonDisabled] = useState("true");
     const [buttonId, setButtonId] = useState("disabled");
     const [errorsUpdated, setErrorsUpdated] = useState(false);
