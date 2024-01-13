@@ -12,16 +12,16 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
 
         if (formName.length === 0) {
             setNameLengthError("The name must be at least 1 character long.");
-        } else if (formName.length > 8) {
-            setNameLengthError("The name must be less than 9 characters long.");
+        } else if (formName.length > 11) {
+            setNameLengthError("The name must be less than 12 characters long.");
         } else {
             setNameLengthError("");
         }
 
         if (formBreed.length === 0) {
             setBreedLengthError("The breed must be at least 1 character long.");
-        } else if (formBreed.length > 8) {
-            setBreedLengthError("The breed must be less than 9 characters long.")
+        } else if (formBreed.length > 11) {
+            setBreedLengthError("The breed must be less than 12 characters long.")
         } else {
             setBreedLengthError("");
         }
