@@ -16,8 +16,9 @@ function App() {
   const [formStatus, setFormStatus] = useState("");
   const [formUrl, setFormUrl] = useState("");
   const [nameLengthError, setNameLengthError] = useState("The name must be at least 1 character long.");
-    const [breedLengthError, setBreedLengthError] = useState("The breed must be at least 1 character long.");
-    const [statusError, setStatusError] = useState("The status must be either 'field' or 'bench.'");
+  const [breedLengthError, setBreedLengthError] = useState("The breed must be at least 1 character long.");
+  const [statusError, setStatusError] = useState("The status must be either 'field' or 'bench.'");
+  const [rememberScroll, setRememberScroll] = useState(0)
   
   return (
     <>
@@ -39,7 +40,9 @@ function App() {
                                               breedLengthError={breedLengthError}
                                               setBreedLengthError={setBreedLengthError}
                                               statusError={statusError}
-                                              setStatusError={setStatusError}/>} />
+                                              setStatusError={setStatusError}
+                                              rememberScroll={rememberScroll}
+                                              setRememberScroll={setRememberScroll}/>} />
       </Routes>
     </>
   )
