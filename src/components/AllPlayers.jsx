@@ -33,10 +33,18 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
             setVisibleArr(playersArr);
         } else {
             const lowerCaseSearch = currentSearch.toLowerCase();
-            const visiblePlayers = playersArr.filter((player) => {
+            let weakSearchFilter = playersArr.filter((player) => {
                 return (player.name.toLowerCase().includes(lowerCaseSearch));
             })
-            setVisibleArr(visiblePlayers);
+            let strongSearchFilter = [];
+            for (let index in weakSearchFilter){
+                if (lowerCaseSearch === weakSearchFilter[index].name.toLowerCase().slice(0, currentSearch.length)){
+                    strongSearchFilter.push(weakSearchFilter[index]);
+                    weakSearchFilter.splice(index, 1);
+                }
+            }
+
+            setVisibleArr(strongSearchFilter.concat(weakSearchFilter));
         }
     }, [currentSearch, done])
 
