@@ -1,5 +1,5 @@
 import getAllPlayers from '../API/index.js'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import PlayerCard from './PlayerCard.jsx'
 import Search from './Search.jsx'
 import AddPlayerForm from './AddPlayerForm.jsx'
@@ -7,14 +7,14 @@ import AddPlayerForm from './AddPlayerForm.jsx'
 
 
 
-export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError}){
+export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, rememberScroll, setRememberScroll}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
     const [done, setDone] = useState(false);
     const [confirm, setConfirm] = useState(false);
-    
 
+    
     useEffect(() => {
         async function updatePlayersArr(){
             const newPlayersArr = await getAllPlayers();
@@ -26,6 +26,10 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
         updatePlayersArr();
         setRefresh(false);
     }, [refresh])
+
+    useEffect(() => {
+        window.scrollTo(0, rememberScroll);
+    }, [done])
 
     useEffect(() => {
         setDone(false);
@@ -74,7 +78,7 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                     } else {
                         return (
                             visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm} setRememberScroll={setRememberScroll} rememberScroll={rememberScroll}/>
                             })
                         )
                     }
