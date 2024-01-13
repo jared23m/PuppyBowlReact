@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { createPlayer } from '../API';
 
-export default function AddPlayerForm({formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm}){
+export default function AddPlayerForm({className, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm}){
     
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [buttonId, setButtonId] = useState("disabled");
@@ -61,23 +61,23 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
     }
     
     return (
-        <>
+        <div className={className}>
             <h2>Add Player</h2>
-            {(nameLengthError.length != 0) && <p>{nameLengthError}</p>}
-            {(breedLengthError.length != 0) && <p>{breedLengthError}</p>}
-            {(statusError.length !=0) && <p>{statusError}</p>}
-            <form onSubmit={handleSubmit}>
+            {(nameLengthError.length != 0) && <p className='errorWarning'>{nameLengthError}</p>}
+            {(breedLengthError.length != 0) && <p className='errorWarning'>{breedLengthError}</p>}
+            {(statusError.length !=0) && <p className='errorWarning'>{statusError}</p>}
+            <form className="AddPlayerEntries" onSubmit={handleSubmit}>
                 <div id='entries'>
-                    <label>
+                    <label className="addLabel" id='addName'> 
                         Name: <input type= 'text' value= {formName} onChange= {(e) => setFormName(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addBreed'>
                         Breed: <input type= 'text' value= {formBreed} onChange= {(e) => setFormBreed(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addStatus'>
                         Status: <input type= 'text' value= {formStatus} onChange= {(e) => setFormStatus(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addImageUrl'>
                         Image URL: <input type= 'text' value= {formUrl} onChange= {(e) => setFormUrl(e.target.value)}/>
                     </label>
                 </div>
@@ -85,6 +85,6 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
             </form>
             {confirm && <p>Player Submitted!</p>}
             
-        </>
+        </div>
     )
 }
