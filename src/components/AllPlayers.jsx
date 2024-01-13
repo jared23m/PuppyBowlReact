@@ -71,7 +71,8 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                             setStatusError={setStatusError}
                             setRefresh={setRefresh}
                             confirm= {confirm}
-                            setConfirm={setConfirm}/>
+                            setConfirm={setConfirm}
+                            setRememberScroll={setRememberScroll}/>
             <Search className={'Search'} currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {

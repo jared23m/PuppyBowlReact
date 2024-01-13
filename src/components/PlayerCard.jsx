@@ -7,6 +7,7 @@ export default function PlayerCard({className, id, name, imageUrl, refresh, setR
     const navigate = useNavigate();
 
     function handleDeleteClick(id){
+        setRememberScroll(window.scrollY);
         deletePlayer(id);
         setRefresh(true);
     }

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { createPlayer } from '../API';
 
-export default function AddPlayerForm({className, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm}){
+export default function AddPlayerForm({className, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm, setRememberScroll}){
     
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [buttonId, setButtonId] = useState("disabled");
@@ -51,6 +51,7 @@ export default function AddPlayerForm({className, formName, setFormName, formBre
 
     function handleSubmit(event){
         event.preventDefault();
+        setRememberScroll(window.scrollY);
         createPlayer(formName, formBreed, formStatus, formUrl);
         setRefresh(true);
         setFormName("");
@@ -86,7 +87,7 @@ export default function AddPlayerForm({className, formName, setFormName, formBre
                 </div>
                 <button  id={buttonId} disabled={buttonDisabled}>Submit</button>
             </form>
-            {confirm && <p>Player Submitted!</p>}
+            {confirm && <p className='confirmFlag'>Player Submitted!</p>}
             
         </div>
     )

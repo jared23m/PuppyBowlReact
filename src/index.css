@@ -45,12 +45,18 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  transition: transform 0.25s;
 }
 
-button:focus,
+button:hover{
+  border-color:chartreuse;
+  transform: scale(1.1);
+}
+
+/*button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+}*/
 
 #disabled{
   background-color:rgb(165, 165, 165);
@@ -59,6 +65,7 @@ button:focus-visible {
 #disabled:hover{
   cursor: default;
   border-color: rgb(165, 165, 165);
+  transform: none;
 }
 
 .AddPlayerForm{
@@ -120,7 +127,6 @@ button:focus-visible {
   width: 25px;
   height: 25px;
   margin-top: 5%;
-
 }
 
 .PlayerList{
@@ -157,6 +163,52 @@ img{
   width: 200%;
   margin-top: 30%;
 }
+
+.HighlightPage{
+  margin-bottom: 5%;
+}
+
+
+.highlightName{
+  font-size: 100px;
+  margin-top: -5%;
+}
+
+.highlightCard{
+  display: flex;
+  margin-top: -5%;
+}
+
+.highlightInfo{
+  margin-right: 100px;
+}
+
+.goBackOnHighlight{
+  margin-left: -5px;
+}
+
+input{
+  border-radius: 5px;
+  border: 5;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-width: 1px;
+  background-color:#242424;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.confirmFlag{
+  background-color: rgb(39, 77, 0);
+  padding: 3%;
+  width: 44%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+
+
 
 
 
