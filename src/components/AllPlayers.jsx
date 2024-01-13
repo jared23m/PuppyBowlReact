@@ -2,15 +2,17 @@ import getAllPlayers from '../API/index.js'
 import {useState, useEffect} from 'react'
 import PlayerCard from './PlayerCard.jsx'
 import Search from './Search.jsx'
+import AddPlayerForm from './AddPlayerForm.jsx'
 
 
 
 
-export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch}){
+export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurrentSearch, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError}){
     const [playersArr, setPlayersArr] = useState([]);
     const [visibleArr, setVisibleArr] = useState(playersArr);
     const [refresh, setRefresh] = useState(false);
     const [done, setDone] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     
 
     useEffect(() => {
@@ -40,6 +42,23 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
 
     return (
         <>
+            <AddPlayerForm formName={formName}
+                            setFormName={setFormName}
+                            formBreed={formBreed}
+                            setFormBreed={setFormBreed}
+                            formStatus={formStatus}
+                            setFormStatus={setFormStatus}
+                            formUrl={formUrl}
+                            setFormUrl={setFormUrl}
+                            nameLengthError={nameLengthError}
+                            setNameLengthError={setNameLengthError}
+                            breedLengthError={breedLengthError}
+                            setBreedLengthError={setBreedLengthError}
+                            statusError={statusError}
+                            setStatusError={setStatusError}
+                            setRefresh={setRefresh}
+                            confirm= {confirm}
+                            setConfirm={setConfirm}/>
             <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
             {(() => {
                     if (visibleArr.length === 0) {
@@ -47,7 +66,7 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                     } else {
                         return (
                             visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId}/>
+                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm}/>
                             })
                         )
                     }
