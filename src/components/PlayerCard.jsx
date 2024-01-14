@@ -24,7 +24,7 @@ export default function PlayerCard({className, id, name, imageUrl, refresh, setR
             
             <h1>{name}</h1>
             <div className='cardSide'>
-                <img src={imageUrl} alt={`Picture of ${name}`} width="500"/>
+                <img className="cardImage" src={imageUrl} alt={`Picture of ${name}`} width="500"/>
                 <div className='cardButtons'>
                     <button className='learnMoreButton'onClick = {() => handleLearnClick(id)}>Learn More</button>
                     <button className='deleteButton' onClick = {() => handleDeleteClick(id)}>Delete Player</button>

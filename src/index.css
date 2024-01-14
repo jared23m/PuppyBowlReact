@@ -180,11 +180,15 @@ img{
 }
 
 .highlightInfo{
-  margin-right: 100px;
+  width: 200%;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .goBackOnHighlight{
   margin-left: -5px;
+  margin-top: auto;
 }
 
 input{
@@ -206,10 +210,60 @@ input{
   text-align: center;
 }
 
+@media screen and (max-width: 1450px){
+  .cardImage{
+    max-width: 400px;
+  }
+}
 
+@media screen and (max-width: 1350px){
 
+  .learnMoreButton{
+    width: 150%;  
+  }
 
+  .deleteButton{
+    width: 150%;
+  }
 
+  .middle{
+    margin-left: 100px;
+  }
+ 
+}
 
+@media screen and (max-width: 1200px){
 
+  .cardImage{
+    max-width: 200px;
+  }
+  
+}
 
+@media screen and (max-width: 950px){
+
+  .AddPlayerForm{
+    position:static;
+    margin-left: 50px;
+    margin-top: 5%;
+    
+  }
+
+  .middle{
+    margin-left: 80px;
+  }
+}
+
+@media screen and (max-width: 750px){
+
+  .Search{
+    position: static;
+    margin-left: 50px;
+    margin-top: 10%;
+  }
+
+  .clearSearch{
+    margin-left: 0px;
+    width: 40%;
+  }
+}

@@ -45,12 +45,12 @@ export default function PlayerHighlight({selectedPlayerId, setSelectedPlayerId})
                                     <h1 className='highlightName'>{selectedPlayer.name}.</h1>
                                 </div> 
                                 <div className='highlightCard'>
+                                    <img className='highlightImage' src={selectedPlayer.imageUrl} alt={`Picture of ${selectedPlayer.name}`} height="400"/>
                                     <div className='highlightInfo'>
                                             <p className='highlightBreed'>Breed: {selectedPlayer.breed}</p>
-                                            <p className='highlightStatus'>On the {selectedPlayer.status}</p>
+                                            <p className='highlightStatus'>On the {selectedPlayer.status}.</p>
                                             <button className='goBackOnHighlight' onClick= {() => handleBackClick()}>Go Back</button>
                                     </div>
-                                    <img className='highlightImage' src={selectedPlayer.imageUrl} alt={`Picture of ${selectedPlayer.name}`} width="600"/>
                                 </div>
                             </div>
                         )

@@ -74,20 +74,22 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                             setConfirm={setConfirm}
                             setRememberScroll={setRememberScroll}/>
             <Search className={'Search'} currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
-            {(() => {
-                    if (visibleArr.length === 0) {
-                        return <p>No Players</p>
-                    } else {
-                        return (
-                            <div className="PlayerList">
-                            {visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} className="PlayerCard" id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm} setRememberScroll={setRememberScroll} rememberScroll={rememberScroll}/>
-                            })}
-                            </div>
-                        )
+            <div className='middle'>
+                {(() => {
+                        if (visibleArr.length === 0) {
+                            return <p>No Players</p>
+                        } else {
+                            return (
+                                <div className="PlayerList">
+                                {visibleArr.map((player) => {
+                                    return <PlayerCard key={player.id} className="PlayerCard" id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm} setRememberScroll={setRememberScroll} rememberScroll={rememberScroll}/>
+                                })}
+                                </div>
+                            )
+                        }
                     }
-                }
-            )()}
+                )()}
+            </div>
         </>
     )
 }

@@ -3,5 +3,11 @@
   margin: 0 auto;
 }
 
+@media screen and (max-width: 950px){
+  #root{
+    margin: 0 0;
+  }
+}
+
 
 
