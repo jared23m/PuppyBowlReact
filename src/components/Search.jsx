@@ -1,15 +1,15 @@
 
-export default function Search({currentSearch, setCurrentSearch}){
+export default function Search({className, currentSearch, setCurrentSearch}){
     
 
     return (
-        <>
+        <div className={className}>
             <form>
                     <label>
                         Search: <input type= 'text' value= {currentSearch} onChange= {(e) => setCurrentSearch(e.target.value)}/>
                     </label>
             </form>
-            <button onClick={() => setCurrentSearch("")}>Clear Search</button>
-        </>
+            <button className='clearSearch' onClick={() => setCurrentSearch("")}>Clear Search</button>
+        </div>
     )
 }

@@ -3,10 +3,11 @@ import { deletePlayer, getOnePlayer } from "../API/index.js"
 
 
 
-export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, setSelectedPlayerId, setConfirm, setRememberScroll, rememberScroll}){
+export default function PlayerCard({className, id, name, imageUrl, refresh, setRefresh, setSelectedPlayerId, setConfirm, setRememberScroll, rememberScroll}){
     const navigate = useNavigate();
 
     function handleDeleteClick(id){
+        setRememberScroll(window.scrollY);
         deletePlayer(id);
         setRefresh(true);
     }
@@ -19,11 +20,16 @@ export default function PlayerCard({id, name, imageUrl, refresh, setRefresh, set
     }
 
     return (
-        <>
+        <div className={className}>
+            
             <h1>{name}</h1>
-            <img src={imageUrl} alt={`Picture of ${name}`} width="300"/>
-            <button onClick = {() => handleLearnClick(id)}>Learn More</button>
-            <button onClick = {() => handleDeleteClick(id)}>Delete Player</button>
-        </>
+            <div className='cardSide'>
+                <img className="cardImage" src={imageUrl} alt={`Picture of ${name}`} width="500"/>
+                <div className='cardButtons'>
+                    <button className='learnMoreButton'onClick = {() => handleLearnClick(id)}>Learn More</button>
+                    <button className='deleteButton' onClick = {() => handleDeleteClick(id)}>Delete Player</button>
+                </div>
+            </div>
+        </div>
     )
 }

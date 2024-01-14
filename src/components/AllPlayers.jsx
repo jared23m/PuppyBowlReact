@@ -54,7 +54,8 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
 
     return (
         <>
-            <AddPlayerForm formName={formName}
+            <AddPlayerForm className={'AddPlayerForm'}
+                            formName={formName}
                             setFormName={setFormName}
                             formBreed={formBreed}
                             setFormBreed={setFormBreed}
@@ -70,20 +71,25 @@ export default function AllPlayers({setSelectedPlayerId, currentSearch, setCurre
                             setStatusError={setStatusError}
                             setRefresh={setRefresh}
                             confirm= {confirm}
-                            setConfirm={setConfirm}/>
-            <Search currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
-            {(() => {
-                    if (visibleArr.length === 0) {
-                        return <p>No Players</p>
-                    } else {
-                        return (
-                            visibleArr.map((player) => {
-                                return <PlayerCard key={player.id} id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm} setRememberScroll={setRememberScroll} rememberScroll={rememberScroll}/>
-                            })
-                        )
+                            setConfirm={setConfirm}
+                            setRememberScroll={setRememberScroll}/>
+            <Search className={'Search'} currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
+            <div className='middle'>
+                {(() => {
+                        if (visibleArr.length === 0) {
+                            return <p>No Players</p>
+                        } else {
+                            return (
+                                <div className="PlayerList">
+                                {visibleArr.map((player) => {
+                                    return <PlayerCard key={player.id} className="PlayerCard" id={player.id} name={player.name} imageUrl={player.imageUrl} refresh={refresh} setRefresh={setRefresh} setSelectedPlayerId= {setSelectedPlayerId} setConfirm={setConfirm} setRememberScroll={setRememberScroll} rememberScroll={rememberScroll}/>
+                                })}
+                                </div>
+                            )
+                        }
                     }
-                }
-            )()}
+                )()}
+            </div>
         </>
     )
 }

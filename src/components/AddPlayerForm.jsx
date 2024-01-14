@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { createPlayer } from '../API';
 
-export default function AddPlayerForm({formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm}){
+export default function AddPlayerForm({className, formName, setFormName, formBreed, setFormBreed, formStatus, setFormStatus, formUrl, setFormUrl, nameLengthError, setNameLengthError, breedLengthError, setBreedLengthError, statusError, setStatusError, setRefresh, confirm, setConfirm, setRememberScroll}){
     
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [buttonId, setButtonId] = useState("disabled");
@@ -51,6 +51,7 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
 
     function handleSubmit(event){
         event.preventDefault();
+        setRememberScroll(window.scrollY);
         createPlayer(formName, formBreed, formStatus, formUrl);
         setRefresh(true);
         setFormName("");
@@ -61,30 +62,33 @@ export default function AddPlayerForm({formName, setFormName, formBreed, setForm
     }
     
     return (
-        <>
-            <h2>Add Player</h2>
-            {(nameLengthError.length != 0) && <p>{nameLengthError}</p>}
-            {(breedLengthError.length != 0) && <p>{breedLengthError}</p>}
-            {(statusError.length !=0) && <p>{statusError}</p>}
-            <form onSubmit={handleSubmit}>
+        <div className={className}>
+            <div className='titleAndCheck'>
+                <h2 className='formTitle'>Add Player</h2>
+                <img className='checkMark' style={buttonDisabled ? {visibility: 'hidden'} : {visibility: 'visible'}}src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/1200px-Eo_circle_green_checkmark.svg.png' width='50px'/>
+            </div>
+            {(nameLengthError.length != 0) && <p className='errorWarning'>{nameLengthError}</p>}
+            {(breedLengthError.length != 0) && <p className='errorWarning'>{breedLengthError}</p>}
+            {(statusError.length !=0) && <p className='errorWarning'>{statusError}</p>}
+            <form className="AddPlayerEntries" onSubmit={handleSubmit}>
                 <div id='entries'>
-                    <label>
+                    <label className="addLabel" id='addName'> 
                         Name: <input type= 'text' value= {formName} onChange= {(e) => setFormName(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addBreed'>
                         Breed: <input type= 'text' value= {formBreed} onChange= {(e) => setFormBreed(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addStatus'>
                         Status: <input type= 'text' value= {formStatus} onChange= {(e) => setFormStatus(e.target.value)}/>
                     </label>
-                    <label>
+                    <label className="addLabel" id='addImageUrl'>
                         Image URL: <input type= 'text' value= {formUrl} onChange= {(e) => setFormUrl(e.target.value)}/>
                     </label>
                 </div>
                 <button  id={buttonId} disabled={buttonDisabled}>Submit</button>
             </form>
-            {confirm && <p>Player Submitted!</p>}
+            {confirm && <p className='confirmFlag'>Player Submitted!</p>}
             
-        </>
+        </div>
     )
 }
